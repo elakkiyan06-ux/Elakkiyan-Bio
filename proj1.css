@@ -1,3 +1,7 @@
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -9,11 +13,40 @@ html{
     scroll-behavior:smooth;
 }
 
+/* =========================
+   BODY
+========================= */
+
 body{
     background:radial-gradient(circle at top left,#1a0033,#0a0014 60%);
     color:#f1f1f1;
     line-height:1.6;
     padding:20px;
+    overflow-x:hidden;
+}
+
+.dark{
+    background:#121212;
+    color:white;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background:
+    radial-gradient(circle,
+    rgba(0,247,255,.08),
+    transparent 40%);
+    animation:bgMove 15s linear infinite;
+    z-index:-2;
 }
 
 body::after{
@@ -21,241 +54,521 @@ body::after{
     position:fixed;
     inset:0;
     background:
-    radial-gradient(circle at 80% 20%, rgba(255,0,255,.15), transparent 40%),
-    radial-gradient(circle at 20% 80%, rgba(0,255,255,.12), transparent 40%);
+    radial-gradient(circle at 80% 20%,
+    rgba(255,0,255,.15),
+    transparent 40%),
+
+    radial-gradient(circle at 20% 80%,
+    rgba(0,255,255,.12),
+    transparent 40%);
     z-index:-1;
 }
 
-.dark{
-    background:#121212;
+@keyframes bgMove{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-/* NAVBAR */
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    z-index:2000;
+
+    border:none;
+    border-radius:10px;
+
+    padding:10px 15px;
+
+    cursor:pointer;
+
+    background:#00f7ff;
+    color:black;
+    font-size:18px;
+}
+
+/* =========================
+   DESKTOP NAVBAR
+========================= */
 
 nav{
     position:sticky;
-    top:0;
+    top:10px;
     z-index:1000;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
 .nav-bar{
     list-style:none;
     display:flex;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    gap:10px;
-    padding:10px;
+    justify-content:center;
+    gap:15px;
+
     background:rgba(255,255,255,.08);
-    border-radius:20px;
+
+    padding:12px;
+
+    border-radius:30px;
+
     backdrop-filter:blur(10px);
-    scrollbar-width:none;
-}
-
-.nav-bar::-webkit-scrollbar{
-    display:none;
-}
-
-.nav-bar li{
-    flex-shrink:0;
 }
 
 .nav-bar a{
     text-decoration:none;
     color:white;
     font-weight:bold;
-    padding:10px 16px;
+
+    padding:10px 15px;
+
     border-radius:15px;
-    white-space:nowrap;
+
     transition:.3s;
 }
 
 .nav-bar a:hover{
-    background:linear-gradient(90deg,#ff00cc,#00f7ff);
+    background:linear-gradient(
+    90deg,
+    #ff00cc,
+    #00f7ff);
+
     color:black;
 }
 
-/* BUTTON */
-
-.theme-btn{
-    position:fixed;
-    top:10px;
-    right:10px;
-    z-index:2000;
-    border:none;
-    padding:10px;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-/* TITLE */
+/* =========================
+   HOME SECTION
+========================= */
 
 h1{
     text-align:center;
     font-size:3rem;
-    margin:20px 0;
+    margin-top:20px;
+    margin-bottom:15px;
+
+    text-transform:uppercase;
+
     color:#e0e0e0;
+
+    text-shadow:
+    2px 2px 6px rgba(0,0,0,.6);
 }
 
 .tagline{
     text-align:center;
     color:#9be7ff;
     margin-bottom:20px;
+    font-size:1.1rem;
 }
 
 .facts{
     display:flex;
     justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
+    gap:25px;
+    margin-bottom:20px;
 }
 
-/* IMAGE */
+.facts p{
+    color:#00f7ff;
+    font-weight:bold;
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
 
 img{
     display:block;
+
     width:100%;
     max-width:320px;
+
     margin:20px auto;
+
     border-radius:15px;
+
     border:3px solid #00f7ff;
-    box-shadow:0 0 20px rgba(0,247,255,.4);
+
+    box-shadow:
+    0 0 25px rgba(0,247,255,.5);
+
+    animation:float 4s ease-in-out infinite;
 }
 
-/* TEXT */
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   TEXT
+========================= */
 
 p{
-    text-align:center;
     max-width:900px;
-    margin:15px auto;
+    margin:auto;
+    margin-bottom:20px;
+    text-align:center;
 }
-
-/* HEADINGS */
+/* =========================
+   SECTION HEADINGS
+========================= */
 
 h2{
     margin-top:40px;
     margin-bottom:15px;
+
     color:#00f7ff;
+
     border-left:5px solid #ff00cc;
+
     padding-left:12px;
 }
 
 h2::after{
     content:"";
     display:block;
+
     width:60px;
     height:3px;
+
     background:#00f7ff;
+
     margin-top:5px;
 }
 
-/* LISTS */
+/* =========================
+   LISTS
+========================= */
 
 ul{
     list-style:none;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
     gap:15px;
+
+    margin-bottom:25px;
 }
 
 ul li{
-    padding:12px;
+    background:
+    rgba(255,255,255,.05);
+
+    border:1px solid
+    rgba(255,0,204,.4);
+
     border-radius:10px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,0,204,.4);
+
+    padding:15px;
+
     transition:.3s;
 }
 
 ul li:hover{
     transform:translateY(-5px);
+
+    background:linear-gradient(
+    90deg,
+    rgba(255,0,204,.2),
+    rgba(0,247,255,.2));
+
+    border-color:#00f7ff;
 }
 
-/* PROJECTS */
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    display:inline-block;
+
+    padding:10px 20px;
+
+    margin:15px auto;
+
+    background:linear-gradient(
+    90deg,
+    #ff00cc,
+    #00f7ff);
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    border-radius:25px;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    opacity:.8;
+}
+
+.socials{
+    text-align:center;
+}
+
+/* =========================
+   PROJECT CARDS
+========================= */
 
 .project-card{
     max-width:500px;
-    margin:10px auto;
+
+    margin:15px auto;
+
     padding:15px;
+
     border-radius:10px;
-    border:1px solid #00f7ff;
+
     text-align:center;
-    background:rgba(255,255,255,.05);
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:1px solid #00f7ff;
+
+    transition:.3s;
 }
 
 .project-card:hover{
-    transform:scale(1.03);
+    transform:scale(1.05);
+
+    background:
+    rgba(0,247,255,.1);
 }
 
-/* HOBBIES */
+/* =========================
+   HOBBY CARDS
+========================= */
 
 .hobby-card{
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    background:
+    linear-gradient(
+    135deg,
+    #1e3c72,
+    #2a5298);
+
+    color:white;
+
     padding:20px;
-    border-radius:12px;
+
     margin:15px 0;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+    box-shadow:
+    0 8px 15px
+    rgba(0,0,0,.2);
+}
+
+.hobby-card:hover{
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    box-shadow:
+    0 12px 20px
+    rgba(0,0,0,.3);
 }
 
 .hobby-card h3{
     margin-bottom:10px;
 }
 
-/* BUTTONS */
-
-.btn{
-    display:inline-block;
-    padding:10px 20px;
-    background:linear-gradient(90deg,#ff00cc,#00f7ff);
-    color:black;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:25px;
-}
-
-.socials{
-    text-align:center;
-    margin:20px 0;
-}
-
-/* CLOCK */
+/* =========================
+   CLOCK
+========================= */
 
 #clock{
     text-align:center;
+
     color:#00f7ff;
+
     font-size:1.2rem;
+
+    margin-top:20px;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-    margin-top:40px;
+    margin-top:50px;
+
     padding:20px;
-    text-align:center;
+
     background:black;
+
     color:cyan;
+
+    text-align:center;
+
+    animation:
+    glow 2s infinite alternate;
 }
 
-/* TOP BUTTON */
+@keyframes glow{
+
+    from{
+        text-shadow:
+        0 0 10px cyan;
+    }
+
+    to{
+        text-shadow:
+        0 0 30px cyan;
+    }
+}
+
+/* =========================
+   TOP BUTTON
+========================= */
 
 .top-btn{
     position:fixed;
+
     right:20px;
     bottom:20px;
+
+    width:50px;
+    height:50px;
+
     border:none;
-    padding:12px;
+
     border-radius:50%;
+
     cursor:pointer;
+
+    background:#00f7ff;
+
+    color:black;
+
+    font-size:20px;
+
+    font-weight:bold;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE NAVIGATION
+========================= */
 
 @media(max-width:768px){
 
-    h1{
-        font-size:2rem;
+    body{
+        padding-left:70px;
     }
 
-    ul{
-        grid-template-columns:1fr;
+    nav{
+        position:fixed;
+
+        left:10px;
+
+        top:50%;
+
+        transform:
+        translateY(-50%);
+
+        width:auto;
+    }
+
+    .nav-bar{
+        flex-direction:column;
+
+        gap:10px;
+
+        background:none;
+
+        padding:0;
+    }
+
+    .nav-bar li{
+        list-style:none;
+    }
+
+    .nav-bar a{
+
+        width:50px;
+        height:50px;
+
+        display:flex;
+
+        align-items:center;
+        justify-content:center;
+
+        border-radius:12px;
+
+        background:
+        rgba(255,255,255,.08);
+
+        border:
+        1px solid #00f7ff;
+
+        font-size:0;
+    }
+
+    .nav-bar li:nth-child(1) a::before{
+        content:"🏠";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(2) a::before{
+        content:"💻";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(3) a::before{
+        content:"⭐";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(4) a::before{
+        content:"📂";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(5) a::before{
+        content:"🏆";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(6) a::before{
+        content:"🎯";
+        font-size:20px;
+    }
+
+    .nav-bar li:nth-child(7) a::before{
+        content:"📞";
+        font-size:20px;
+    }
+
+    h1{
+        font-size:2rem;
     }
 
     .facts{
@@ -263,10 +576,17 @@ footer{
         align-items:center;
     }
 
+    ul{
+        grid-template-columns:1fr;
+    }
+
     .btn{
         display:block;
         width:90%;
-        margin:auto;
         text-align:center;
+    }
+
+    img{
+        max-width:250px;
     }
 }
