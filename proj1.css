@@ -24,6 +24,9 @@ body{
     padding:20px;
     overflow-x:hidden;
 }
+section{
+    scroll-margin-top: 100px;
+}
 
 .dark{
     background:#121212;
