@@ -256,43 +256,33 @@ h2::after{
 /* =========================
    LISTS
 ========================= */
-
 ul{
     list-style:none;
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(240px,1fr));
+    repeat(4,1fr);
 
     gap:15px;
 
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 ul li{
-    background:
-    rgba(255,255,255,.05);
+    background:rgba(255,255,255,0.05);
 
-    border:1px solid
-    rgba(255,0,204,.4);
-
-    border-radius:10px;
+    border:1px solid rgba(255,0,204,.4);
 
     padding:15px;
 
-    transition:.3s;
+    border-radius:10px;
+
+    transition:0.3s;
 }
 
 ul li:hover{
     transform:translateY(-5px);
-
-    background:linear-gradient(
-    90deg,
-    rgba(255,0,204,.2),
-    rgba(0,247,255,.2));
-
-    border-color:#00f7ff;
 }
 
 /* =========================
@@ -335,22 +325,20 @@ ul li:hover{
 ========================= */
 
 .project-card{
+    width:100%;
     max-width:500px;
 
     margin:15px auto;
+
+    text-align:center;
 
     padding:15px;
 
     border-radius:10px;
 
-    text-align:center;
-
-    background:
-    rgba(255,255,255,.05);
-
     border:1px solid #00f7ff;
 
-    transition:.3s;
+    background:rgba(255,255,255,0.05);
 }
 
 .project-card:hover{
@@ -478,59 +466,75 @@ footer{
    MOBILE NAVIGATION
 ========================= */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-    body{
-        padding-left:70px;
-    }
-
+    /* Remove left sidebar */
     nav{
         position:fixed;
-
-        left:10px;
-
-        top:50%;
-
-        transform:
-        translateY(-50%);
-
-        width:auto;
+        bottom:10px;
+        left:50%;
+        transform:translateX(-50%);
+        top:auto;
+        width:95%;
+        z-index:9999;
     }
 
     .nav-bar{
-        flex-direction:column;
+        display:flex;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        justify-content:flex-start;
 
-        gap:10px;
+        gap:8px;
 
-        background:none;
+        padding:10px;
 
-        padding:0;
+        border-radius:20px;
+
+        scrollbar-width:none;
     }
 
-    .nav-bar li{
-        list-style:none;
+    .nav-bar::-webkit-scrollbar{
+        display:none;
     }
 
     .nav-bar a{
-
-        width:50px;
-        height:50px;
-
-        display:flex;
-
-        align-items:center;
-        justify-content:center;
-
-        border-radius:12px;
-
-        background:
-        rgba(255,255,255,.08);
-
-        border:
-        1px solid #00f7ff;
-
-        font-size:0;
+        white-space:nowrap;
+        font-size:12px;
+        padding:8px 12px;
     }
+
+    /* REMOVE extra left space */
+    body{
+        padding-left:20px;
+        padding-right:20px;
+        padding-bottom:90px;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    .facts{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    img{
+        width:100%;
+        max-width:260px;
+    }
+
+    /* Skills become 1 column */
+    ul{
+        grid-template-columns:1fr;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+}
 
     .nav-bar li:nth-child(1) a::before{
         content:"🏠";
